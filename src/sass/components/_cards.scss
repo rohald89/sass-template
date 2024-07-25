@@ -1,58 +1,17 @@
-@use "../abstracts" as *;
-
-/* 
-Card component 
-Inspired by the Card component from smolcss.dev
-https://smolcss.dev/#smol-card-component
-*/
+@use "../abstracts/" as *;
 
 .card {
-  --img-ratio: 3/2;
+  display: grid;
+  gap: $card-flow-spacing;
+  padding: $card-padding;
+  background-color: $card-background-default;
+  font-family: $card-font-family;
+  color: $card-color-default;
+  line-height: $card-line-height;
+  box-shadow: $card-shadow;
+  border-radius: $card-border-radius;
 
-  display: flex;
-  flex-direction: column;
-  /* Supported for flexbox in modern browsers since April 2021 */
-  gap: 1rem;
-  box-shadow: 0 0 0.5rem hsl(0 0% 0% / 35%);
-  border-radius: 0.5rem;
-
-  > img {
-    aspect-ratio: var(--img-ratio);
-    object-fit: cover;
-    width: 100%;
-
-    &:first-child {
-      border-radius: 0.5rem 0.5rem 0 0;
-    }
-
-    &:last-child {
-      border-radius: 0 0 0.5rem 0.5rem;
-      margin-top: auto;
-    }
-  }
-
-  > :not(img) {
-    margin-inline: $card-body-spacing;
-
-    /* Prevent typography "orphans" */
-    text-wrap: pretty;
-
-    &:first-child {
-      margin-top: $card-body-spacing;
-    }
-  }
-
-  /* Enhanced `:not()` accepts a selector list,
-  but as a fallback you can chain `:not()` instead */
-  > :last-of-type:not(img, h2, h3, h4) {
-    margin-bottom: $card-body-spacing;
-  }
-
-  > :not(h2, h3, h4) {
-    font-size: fs(300);
-  }
-
-  > a {
-    align-self: start;
+  &__heading {
+    @include heading($card-heading-font-size, $card-heading-color-default);
   }
 }
